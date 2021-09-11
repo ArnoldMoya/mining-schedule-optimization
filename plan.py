@@ -2,7 +2,7 @@
 """
 Created on Mon Sep  6 20:32:46 2021
 
-@author: Lenovo
+@author: ArnM
 """
 
 import pyomo.environ as pyo
@@ -10,12 +10,12 @@ import pandas as pd
 
 # CARGA DE DATOS
 # Requerimiento
-requerimiento = pd.read_excel('D:/COMACSA/Planificación/requerimiento.xlsx', 
+requerimiento = pd.read_excel('D:/Planificación/requerimiento.xlsx', 
                             index_col = 0, header = 0,
                             sheet_name="requerimiento")
 
 # Capacidades teóricas
-capacidades = pd.read_excel('D:/COMACSA/Planificación/capacidades.xlsx', 
+capacidades = pd.read_excel('D:/Planificación/capacidades.xlsx', 
                             index_col = 0, header = 0)
 # Tiempo máximo de uso de molinos
 Tmax = 30 #días
