@@ -64,7 +64,7 @@ result_obj = opt.solve(model, tee=True)
 # Escribir en archivo Excel
 plan = [(p,m,pyo.value(v)) for (p,m),v in model.t.items()]
 df_plan = pd.DataFrame(plan,columns=["producto","molino","días"])
-df_plan.to_excel("D:/COMACSA/Planificación/plan optimizado v3.xlsx")
+df_plan.to_excel("D:/Planificación/plan optimizado v3.xlsx")
 
 
 
