@@ -13,18 +13,18 @@ from pyomo.opt.results import SolverStatus
 
 # CARGA DE DATOS
 # Requerimiento
-requerimiento = pd.read_excel('D:/COMACSA/Planificación/requerimiento.xlsx',
+requerimiento = pd.read_excel('D:/Planificación/requerimiento.xlsx',
                               index_col=0, header=0,
                               sheet_name="Grupo 2")
 
 # Capacidades teóricas
-capacidades = pd.read_excel('D:/COMACSA/Planificación/capacidades.xlsx',
+capacidades = pd.read_excel('D:/Planificación/capacidades.xlsx',
                             index_col=0, header=0,
                             sheet_name="Grupo 2")
 
 
 # # Disponibilidad de molinos
-disponibilidad = pd.read_excel('D:/COMACSA/Planificación/disponibilidad.xlsx',
+disponibilidad = pd.read_excel('D:/Planificación/disponibilidad.xlsx',
                                index_col=0, header=0)
 
 
@@ -133,7 +133,7 @@ pyo.TransformationFactory('gdp.bigm').apply_to(model)
 
 #opt = pyo.SolverFactory('glpk')
 #opt.options['tmlim'] = 100
-opt = pyo.SolverFactory('cbc', executable='D:/COMACSA/Planificación/Cbc-master-win64-msvc14-md/bin/cbc.exe') #glpk ,executable='D:/COMACSA/Cbc-1.1.0-win32-msvc7/bin/cbc.exe'
+opt = pyo.SolverFactory('cbc', executable='D:/Planificación/Cbc-master-win64-msvc14-md/bin/cbc.exe') #glpk ,executable='D:/COMACSA/Cbc-1.1.0-win32-msvc7/bin/cbc.exe'
 #opt.options['tmlim'] = 100
 opt.options['seconds'] = 100
 result_obj = opt.solve(model, tee=True)
@@ -145,7 +145,7 @@ plan = [(p,
          for p in N
          for m in Molinos]
 df_plan = pd.DataFrame(plan,columns=["producto","molino","asignado","días"])
-df_plan.to_excel("D:/COMACSA/Planificación/test grupo 2 V02.xlsx")
+df_plan.to_excel("D:/Planificación/test grupo 2 V02.xlsx")
 
 #
 print(pyo.value(model.objetivo))
