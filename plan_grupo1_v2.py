@@ -12,17 +12,17 @@ import math
 
 # CARGA DE DATOS
 # Requerimiento
-requerimiento = pd.read_excel('D:/COMACSA/Planificación/requerimiento.xlsx', 
+requerimiento = pd.read_excel('D:/Planificación/requerimiento.xlsx', 
                             index_col = 0, header = 0,
                             sheet_name="Grupo 1")
 
 # Capacidades teóricas
-capacidades = pd.read_excel('D:/COMACSA/Planificación/capacidades.xlsx', 
+capacidades = pd.read_excel('D:/Planificación/capacidades.xlsx', 
                             index_col = 0, header = 0,
                             sheet_name="Grupo 1")
 
 # # Disponibilidad de molinos
-disponibilidad = pd.read_excel('D:/COMACSA/Planificación/disponibilidad.xlsx',
+disponibilidad = pd.read_excel('D:/Planificación/disponibilidad.xlsx',
                                index_col=0, header=0)
 
 # Tiempo máximo de uso de molinos
@@ -50,7 +50,7 @@ for p in N:
 # Habilitación de multiproductos
 P = {(p1,p2,m):0 for p1 in N for p2 in N for m in Molinos}
 
-file = open("D:/COMACSA/Planificación/grupos.txt","r")
+file = open("D:/Planificación/grupos.txt","r")
 lines = file.readlines()
 
 for line in lines:
@@ -151,7 +151,7 @@ model.sobreposicion_rule = pyogdp.Disjunction(rangoSobreposicion,
 # Resolver problema
 pyo.TransformationFactory('gdp.bigm').apply_to(model)
 
-opt = pyo.SolverFactory('cbc', executable='D:/COMACSA/Planificación/Cbc-master-win64-msvc14-md/bin/cbc.exe') #glpk ,executable='D:/COMACSA/Cbc-1.1.0-win32-msvc7/bin/cbc.exe'
+opt = pyo.SolverFactory('cbc', executable='D:/Planificación/Cbc-master-win64-msvc14-md/bin/cbc.exe') #glpk ,executable='D:/COMACSA/Cbc-1.1.0-win32-msvc7/bin/cbc.exe'
 #opt.options['tmlim'] = 100
 opt.options['seconds'] = 100
 result_obj = opt.solve(model, tee=True)
@@ -172,7 +172,7 @@ plan = [(p,
          for m in Molinos]
 df_plan = pd.DataFrame(plan,columns=["producto","molino","asignado","días", 
                                      "inicio", "fin"])
-df_plan.to_excel("D:/COMACSA/Planificación/test grupo 1 v2.xlsx")
+df_plan.to_excel("D:/Planificación/test grupo 1 v2.xlsx")
 
 #
 print(pyo.value(model.objetivo))
